@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Update apt
+    command: apt update
+  - name: Ensure NTP (for time synchronization) is installed.
+    apt: name=ntp state=present
+  - name: Ensure NTP is running.
+    service: name=ntp state=started enabled=yes
